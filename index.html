@@ -39,8 +39,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 5%;display:fl
 .stat-n{font-size:1.9rem;font-weight:700;color:#f5f1ed;line-height:1}
 .stat-n sup{font-size:1rem;color:#f59e0b}
 .stat-l{font-size:0.75rem;color:#8b8278;margin-top:0.3rem;letter-spacing:0.03em}
-.hero-deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:380px;height:380px;opacity:0.08;pointer-events:none}
-.hero-deco svg{width:100%;height:100%}
+/* DARTBOARD ANIMATION */
+.hero-deco{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:clamp(320px,33vw,450px);height:clamp(320px,33vw,450px);pointer-events:auto;cursor:pointer;z-index:1;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),filter 0.4s ease;filter:drop-shadow(0 0 35px rgba(245,158,11,0.3)) drop-shadow(0 0 70px rgba(52,211,153,0.18))}
+.hero-deco:hover{transform:translateY(-50%) scale(1.04);filter:drop-shadow(0 0 50px rgba(245,158,11,0.48)) drop-shadow(0 0 95px rgba(52,211,153,0.32))}
+.hero-deco svg{width:100%;height:100%;overflow:visible}
+.dartboard-wheel{transform-origin:200px 200px;animation:spinBoard 70s linear infinite}
+.hero-deco:hover .dartboard-wheel{animation-duration:22s}
+.dart-group{transform-origin:200px 200px;animation:dartFloat 4s ease-in-out infinite}
+.ripple-1{transform-origin:200px 200px;animation:rippleWave 3.2s cubic-bezier(0.1,0.7,0.1,1) infinite}
+.ripple-2{transform-origin:200px 200px;animation:rippleWave 3.2s cubic-bezier(0.1,0.7,0.1,1) infinite 1.6s}
+.bullseye-pulse{transform-origin:200px 200px;animation:bullseyePulse 2.4s ease-in-out infinite}
+
+@keyframes spinBoard{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@keyframes dartFloat{
+  0%,100%{transform:rotate(0deg) translate(0,0)}
+  35%{transform:rotate(1.2deg) translate(1px,-1.5px)}
+  70%{transform:rotate(-0.8deg) translate(-1px,1px)}
+}
+@keyframes rippleWave{
+  0%{r:13px;opacity:0.95;stroke-width:2.5px}
+  100%{r:178px;opacity:0;stroke-width:0.5px}
+}
+@keyframes bullseyePulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px #f59e0b) drop-shadow(0 0 12px #d97706)}
+  50%{transform:scale(1.1);filter:drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 26px #ef4444)}
+}
 
 /* SECTIONS */
 .section{padding:5.5rem 5%}
@@ -172,7 +198,7 @@ footer a:hover{color:#f59e0b}
   .nav-links{display:none}
   .hero,.section{padding:5rem 4% 3rem}
   .about-wrap,.contact-wrap{grid-template-columns:1fr;gap:2.5rem}
-  .hero-deco{display:none}
+  .hero-deco{right:50%;top:38%;transform:translate(50%,-50%) scale(0.8);opacity:0.22;pointer-events:none;width:300px;height:300px}
   .stats-row{gap:2rem}
 }
 </style>
@@ -196,13 +222,135 @@ footer a:hover{color:#f59e0b}
 <section class="hero">
   <div class="hero-deco">
     <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="160" stroke="#f5f1ed" stroke-width="1"/>
-      <circle cx="200" cy="200" r="120" stroke="#f5f1ed" stroke-width="1"/>
-      <circle cx="200" cy="200" r="80" stroke="#f5f1ed" stroke-width="1"/>
-      <line x1="0" y1="200" x2="400" y2="200" stroke="#f5f1ed" stroke-width="0.5"/>
-      <line x1="200" y1="0" x2="200" y2="400" stroke="#f5f1ed" stroke-width="0.5"/>
-      <line x1="87" y1="87" x2="313" y2="313" stroke="#f5f1ed" stroke-width="0.5"/>
-      <line x1="313" y1="87" x2="87" y2="313" stroke="#f5f1ed" stroke-width="0.5"/>
+      <defs>
+        <!-- Gradients matching landing page amber & emerald tones -->
+        <radialGradient id="boardGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#2a231b"/>
+          <stop offset="75%" stop-color="#181512"/>
+          <stop offset="100%" stop-color="#12100d"/>
+        </radialGradient>
+        <radialGradient id="bullseyeGrad" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#fbbf24"/>
+          <stop offset="60%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#dc2626"/>
+        </radialGradient>
+        <linearGradient id="barrelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fef3c7"/>
+          <stop offset="35%" stop-color="#f59e0b"/>
+          <stop offset="65%" stop-color="#b45309"/>
+          <stop offset="100%" stop-color="#78350f"/>
+        </linearGradient>
+        <linearGradient id="flightGradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#d97706" stop-opacity="0.7"/>
+        </linearGradient>
+        <linearGradient id="flightGradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6ee7b7" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#059669" stop-opacity="0.7"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ROTATING DARTBOARD ASSEMBLY -->
+      <g class="dartboard-wheel">
+        <!-- Outer Board Base & Shadow -->
+        <circle cx="200" cy="200" r="188" fill="url(#boardGlow)" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+        <circle cx="200" cy="200" r="188" stroke="#34d399" stroke-width="1" stroke-dasharray="2 12" stroke-opacity="0.6"/>
+        <circle cx="200" cy="200" r="168" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4" stroke-opacity="0.7"/>
+
+        <!-- Double Ring (Radius 153, Width 14, Circumference ~961.3, 20 segments of ~48.07) -->
+        <circle cx="200" cy="200" r="153" stroke="#10b981" stroke-width="14" stroke-dasharray="48.07 48.07" fill="none"/>
+        <circle cx="200" cy="200" r="153" stroke="#f59e0b" stroke-width="14" stroke-dasharray="48.07 48.07" stroke-dashoffset="48.07" fill="none"/>
+
+        <!-- Outer Singles (Radius 125, Width 42, Circumference ~785.4, 20 segments of ~39.27) -->
+        <circle cx="200" cy="200" r="125" stroke="#231f1a" stroke-width="42" stroke-dasharray="39.27 39.27" fill="none"/>
+        <circle cx="200" cy="200" r="125" stroke="#3b3329" stroke-width="42" stroke-dasharray="39.27 39.27" stroke-dashoffset="39.27" fill="none"/>
+
+        <!-- Treble Ring (Radius 97, Width 14, Circumference ~609.5, 20 segments of ~30.47) -->
+        <circle cx="200" cy="200" r="97" stroke="#10b981" stroke-width="14" stroke-dasharray="30.47 30.47" fill="none"/>
+        <circle cx="200" cy="200" r="97" stroke="#f59e0b" stroke-width="14" stroke-dasharray="30.47 30.47" stroke-dashoffset="30.47" fill="none"/>
+
+        <!-- Inner Singles (Radius 59, Width 62, Circumference ~370.7, 20 segments of ~18.54) -->
+        <circle cx="200" cy="200" r="59" stroke="#231f1a" stroke-width="62" stroke-dasharray="18.54 18.54" fill="none"/>
+        <circle cx="200" cy="200" r="59" stroke="#3b3329" stroke-width="62" stroke-dasharray="18.54 18.54" stroke-dashoffset="18.54" fill="none"/>
+
+        <!-- Concentric Metallic Wire Rings -->
+        <circle cx="200" cy="200" r="160" stroke="#f59e0b" stroke-width="1.2" fill="none" opacity="0.85"/>
+        <circle cx="200" cy="200" r="146" stroke="#f59e0b" stroke-width="1.2" fill="none" opacity="0.85"/>
+        <circle cx="200" cy="200" r="104" stroke="#f59e0b" stroke-width="1.2" fill="none" opacity="0.85"/>
+        <circle cx="200" cy="200" r="90" stroke="#f59e0b" stroke-width="1.2" fill="none" opacity="0.85"/>
+
+        <!-- 20 Spoke Wire Lines dividing the board -->
+        <g stroke="#f59e0b" stroke-width="1" opacity="0.75">
+          <line x1="40" y1="200" x2="360" y2="200"/>
+          <line x1="47.8" y1="150.6" x2="352.2" y2="249.4"/>
+          <line x1="70.6" y1="106" x2="329.4" y2="294"/>
+          <line x1="106" y1="70.6" x2="294" y2="329.4"/>
+          <line x1="150.6" y1="47.8" x2="249.4" y2="352.2"/>
+          <line x1="200" y1="40" x2="200" y2="360"/>
+          <line x1="249.4" y1="47.8" x2="150.6" y2="352.2"/>
+          <line x1="294" y1="70.6" x2="106" y2="329.4"/>
+          <line x1="329.4" y1="106" x2="70.6" y2="294"/>
+          <line x1="352.2" y1="150.6" x2="47.8" y2="249.4"/>
+        </g>
+
+        <!-- Standard Dartboard Numbers around the rim -->
+        <g fill="#f59e0b" font-family="'Fira Code', monospace" font-size="9" font-weight="600" text-anchor="middle" dominant-baseline="central">
+          <text x="200" y="25">20</text>
+          <text x="254" y="34">1</text>
+          <text x="303" y="58">18</text>
+          <text x="342" y="97">4</text>
+          <text x="366" y="146">13</text>
+          <text x="375" y="200">6</text>
+          <text x="366" y="254">10</text>
+          <text x="342" y="303">15</text>
+          <text x="303" y="342">2</text>
+          <text x="254" y="366">17</text>
+          <text x="200" y="375">3</text>
+          <text x="146" y="366">19</text>
+          <text x="97" y="342">7</text>
+          <text x="58" y="303">16</text>
+          <text x="34" y="254">8</text>
+          <text x="25" y="200">11</text>
+          <text x="34" y="146">14</text>
+          <text x="58" y="97">9</text>
+          <text x="97" y="58">12</text>
+          <text x="146" y="34">5</text>
+        </g>
+
+        <!-- Outer Bull (Green Ring) -->
+        <circle cx="200" cy="200" r="28" fill="#059669" stroke="#34d399" stroke-width="2"/>
+      </g>
+
+      <!-- PULSING EXPANDING RIPPLE SHOCKWAVES -->
+      <circle class="ripple-1" cx="200" cy="200" r="13" stroke="#f59e0b" fill="none"/>
+      <circle class="ripple-2" cx="200" cy="200" r="13" stroke="#34d399" fill="none"/>
+
+      <!-- INNER BULLSEYE (Vibrant glowing center) -->
+      <circle class="bullseye-pulse" cx="200" cy="200" r="13" fill="url(#bullseyeGrad)" stroke="#fef3c7" stroke-width="2"/>
+
+      <!-- EMBEDDED DART (Hitting the Bullseye with Precision) -->
+      <g class="dart-group">
+        <!-- Dart Ground Shadow -->
+        <ellipse cx="208" cy="207" rx="14" ry="4" fill="rgba(0,0,0,0.5)" filter="blur(2px)"/>
+
+        <!-- Steel Needle Point -->
+        <polygon points="200,200 208,193 206,191" fill="#e8e4df"/>
+
+        <!-- Brass & Metallic Knurled Barrel -->
+        <polygon points="206,191 234,163 241,170 213,198" fill="url(#barrelGrad)" stroke="#f59e0b" stroke-width="0.8"/>
+        <!-- Grip Knurling Accent Lines -->
+        <line x1="214" y1="183" x2="221" y2="190" stroke="#fef3c7" stroke-width="0.9" opacity="0.8"/>
+        <line x1="222" y1="175" x2="229" y2="182" stroke="#fef3c7" stroke-width="0.9" opacity="0.8"/>
+        <line x1="230" y1="167" x2="237" y2="174" stroke="#fef3c7" stroke-width="0.9" opacity="0.8"/>
+
+        <!-- Aluminum Shaft / Stem -->
+        <line x1="237" y1="167" x2="270" y2="134" stroke="#e8e4df" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- Aerodynamic Translucent Flights (Amber & Emerald) -->
+        <polygon points="266,138 296,108 306,118 276,148" fill="url(#flightGradAmber)" stroke="#f59e0b" stroke-width="1.2"/>
+        <polygon points="262,134 280,102 292,110 274,142" fill="url(#flightGradGreen)" stroke="#34d399" stroke-width="1.2"/>
+        <line x1="268" y1="136" x2="300" y2="104" stroke="#fef3c7" stroke-width="1" opacity="0.9"/>
+      </g>
     </svg>
   </div>
   <div class="hero-inner">
