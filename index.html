@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srinivas S — Aspiring Software Engineer & Java Developer</title>
+<meta name="description" content="Portfolio of Srinivas S - Aspiring Software Engineer, Core Java & Spring Boot Developer with experience at Nurovec India and DRDO CVRDE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:#1a1815;color:#e8e4df;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(26,24,21,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #3a3530}
+.logo{font-family:'Fira Code',monospace;font-size:0.95rem;color:#d97706;text-decoration:none;font-weight:500}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{text-decoration:none;color:#b8b0a8;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:#f59e0b}
+.hire-btn{background:#f59e0b;color:#1a1815!important;padding:0.45rem 1.1rem;border-radius:6px;font-weight:600!important}
+.hire-btn:hover{background:#d97706;color:#1a1815!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 5% 4rem;background:linear-gradient(135deg,#1a1815 0%,#252220 100%);position:relative}
+.hero-inner{max-width:700px}
+.greeting{font-family:'Fira Code',monospace;font-size:0.9rem;color:#d97706;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.greeting::before{content:'';width:32px;height:1px;background:#d97706}
+.hero h1{font-size:clamp(2.3rem,4.5vw,3.6rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.1rem;color:#f5f1ed}
+.hero h1 em{font-style:normal;color:#f59e0b}
+.hero-sub{font-size:1.05rem;color:#c4bbb2;line-height:1.75;max-width:580px;margin-bottom:2.2rem}
+.hero-sub strong{color:#e8e4df;font-weight:600}
+.cta-row{display:flex;gap:0.9rem;flex-wrap:wrap;margin-bottom:3.5rem}
+.cta-primary{background:#f59e0b;color:#1a1815;padding:0.75rem 1.7rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background 0.2s,transform 0.15s}
+.cta-primary:hover{background:#d97706;transform:translateY(-2px)}
+.cta-ghost{border:1.5px solid #4a4540;color:#e8e4df;padding:0.75rem 1.7rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.9rem;transition:border-color 0.2s,transform 0.15s,color 0.2s}
+.cta-ghost:hover{border-color:#f59e0b;color:#f59e0b;transform:translateY(-2px)}
+.stats-row{display:flex;gap:3rem;flex-wrap:wrap}
+.stat-n{font-size:1.9rem;font-weight:700;color:#f5f1ed;line-height:1}
+.stat-n sup{font-size:1rem;color:#f59e0b}
+.stat-l{font-size:0.75rem;color:#8b8278;margin-top:0.3rem;letter-spacing:0.03em}
+.hero-deco{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:380px;height:380px;opacity:0.08;pointer-events:none}
+.hero-deco svg{width:100%;height:100%}
+
+/* SECTIONS */
+.section{padding:5.5rem 5%}
+.section-alt{background:#252220}
+.sec-label{font-family:'Fira Code',monospace;font-size:0.72rem;color:#d97706;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.5rem}
+.sec-label::before{content:'';width:20px;height:1px;background:#d97706}
+.sec-h{font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:700;color:#f5f1ed;margin-bottom:2.8rem;letter-spacing:-0.02em}
+.sec-h span{color:#f59e0b}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1.15fr 0.85fr;gap:4.5rem;align-items:start}
+.about-body p{color:#c4bbb2;line-height:1.85;margin-bottom:1.1rem;font-size:0.95rem}
+.about-body strong{color:#e8e4df}
+.info-cards{display:flex;flex-direction:column;gap:0.9rem}
+.info-card{background:#302b26;border:1px solid #4a4540;border-radius:10px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s,box-shadow 0.2s}
+.info-card:hover{border-color:#f59e0b;box-shadow:0 2px 12px rgba(245,158,11,0.1)}
+.ic-icon{font-size:1.1rem;margin-top:0.1rem;flex-shrink:0}
+.ic-title{font-size:0.88rem;font-weight:600;color:#e8e4df;margin-bottom:0.15rem}
+.ic-sub{font-size:0.78rem;color:#8b8278;line-height:1.5}
+
+/* EXPERIENCE / INTERNSHIPS */
+.exp-wrap{max-width:780px}
+.tl{position:relative;padding-left:2.2rem}
+.tl::before{content:'';position:absolute;left:4px;top:6px;bottom:0;width:1.5px;background:#4a4540}
+.tl-item{position:relative;margin-bottom:2.8rem}
+.tl-dot{position:absolute;left:-2.25rem;top:4px;width:11px;height:11px;border-radius:50%;background:#f59e0b;border:2px solid #1a1815;outline:2px solid #f59e0b}
+.tl-dot.v2{background:#a78bfa;outline-color:#a78bfa}
+.tl-date{font-family:'Fira Code',monospace;font-size:0.73rem;color:#8b8278;margin-bottom:0.35rem}
+.tl-item h3{font-size:1.05rem;font-weight:600;color:#e8e4df;margin-bottom:0.2rem}
+.tl-org{font-size:0.85rem;color:#f59e0b;font-weight:500;margin-bottom:0.85rem}
+.tl-org.v2{color:#a78bfa}
+.tl-badge{display:inline-block;font-size:0.68rem;padding:0.15rem 0.55rem;border-radius:4px;background:#3a3530;color:#fbbf24;font-family:'Fira Code',monospace;margin-left:0.5rem;font-weight:500}
+.tl-item ul{list-style:none}
+.tl-item ul li{font-size:0.88rem;color:#c4bbb2;line-height:1.75;padding-left:1.2rem;position:relative;margin-bottom:0.45rem}
+.tl-item ul li::before{content:'▹';position:absolute;left:0;color:#f59e0b;font-size:0.85rem}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.edu-card{background:#302b26;border:1px solid #4a4540;border-radius:12px;padding:1.6rem;position:relative;display:flex;flex-direction:column;transition:border-color 0.2s,box-shadow 0.2s}
+.edu-card:hover{border-color:#34d399;box-shadow:0 6px 24px rgba(52,211,153,0.1)}
+.edu-badge{font-family:'Fira Code',monospace;font-size:0.72rem;color:#34d399;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);padding:0.2rem 0.6rem;border-radius:100px;display:inline-block;margin-bottom:0.9rem;align-self:flex-start}
+.edu-icon{font-size:1.5rem;margin-bottom:0.7rem}
+.edu-card h3{font-size:1.02rem;font-weight:600;color:#f5f1ed;margin-bottom:0.35rem;line-height:1.4}
+.edu-inst{font-size:0.85rem;color:#f59e0b;font-weight:500;margin-bottom:0.6rem}
+.edu-score{font-size:0.84rem;color:#e8e4df;margin-bottom:0.7rem}
+.edu-score strong{color:#34d399}
+.edu-desc{font-size:0.82rem;color:#b8b0a8;line-height:1.65;margin-top:auto}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.2rem}
+.skill-block{background:#302b26;border:1px solid #4a4540;border-radius:10px;padding:1.4rem}
+.skill-block-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8b8278;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.skill-chips{display:flex;flex-wrap:wrap;gap:0.45rem}
+.chip{background:#3a3530;color:#c4bbb2;border-radius:5px;padding:0.28rem 0.65rem;font-size:0.77rem;font-family:'Fira Code',monospace;border:1px solid #4a4540;transition:background 0.15s,border-color 0.15s}
+.skill-block:hover .chip{background:#4a4540;border-color:#5a544e}
+
+/* PROJECTS */
+.proj-filter{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.filter-btn{padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;border:1.5px solid #4a4540;background:#302b26;color:#b8b0a8;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.filter-btn:hover,.filter-btn.active{background:#f59e0b;color:#1a1815;border-color:#f59e0b;font-weight:600}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.5rem}
+.proj-card{background:#302b26;border:1px solid #4a4540;border-radius:12px;padding:1.8rem;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s;position:relative}
+.proj-card:hover{box-shadow:0 8px 32px rgba(245,158,11,0.15);transform:translateY(-3px)}
+.proj-card::after{content:'';position:absolute;top:0;left:1.8rem;right:1.8rem;height:2px;border-radius:0 0 4px 4px}
+.proj-card.c1::after{background:#f59e0b}
+.proj-card.c2::after{background:#a78bfa}
+.proj-card.c3::after{background:#34d399}
+.proj-card.c4::after{background:#38bdf8}
+.proj-card.c5::after{background:#fb923c}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.9rem;gap:0.5rem}
+.proj-type{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#8b8278;flex:1}
+.live-tag{font-size:0.68rem;background:#1f3a2f;color:#6ee7b7;border:1px solid #34d399;padding:0.2rem 0.55rem;border-radius:100px;font-weight:600;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;flex-shrink:0}
+.live-tag::before{content:'●';font-size:0.5rem;animation:blink 2s infinite}
+.tag-engine{background:#3f2f1f;color:#fbbf24;border:1px solid #f59e0b}
+.tag-engine::before{content:'⚡';font-size:0.65rem;animation:none}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.proj-card h3{font-size:1.1rem;font-weight:700;color:#f5f1ed;margin-bottom:0.65rem;line-height:1.35}
+.proj-lead{font-size:0.88rem;color:#d4ccc3;line-height:1.65;margin-bottom:0.85rem}
+.proj-bullets{list-style:none;margin-bottom:1.3rem;display:flex;flex-direction:column;gap:0.55rem;flex:1}
+.proj-bullets li{font-size:0.84rem;color:#b8b0a8;line-height:1.6;position:relative;padding-left:1.15rem}
+.proj-bullets li::before{content:'▹';position:absolute;left:0;color:#f59e0b;font-weight:700}
+.proj-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
+.pchip{background:#3a3530;color:#b8b0a8;border-radius:4px;padding:0.22rem 0.55rem;font-size:0.71rem;font-family:'Fira Code',monospace}
+.proj-links{display:flex;gap:1.2rem;margin-top:auto}
+.plink{font-size:0.8rem;font-weight:500;text-decoration:none;color:#d97706;display:flex;align-items:center;gap:0.3rem;transition:color 0.15s}
+.plink:hover{color:#f59e0b}
+.plink.gh{color:#8b8278}
+.plink.gh:hover{color:#f59e0b}
+.proj-card[data-hidden="true"]{display:none}
+
+/* ACHIEVEMENTS & CERTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:3rem}
+.ach-card{background:#302b26;border:1px solid #4a4540;border-radius:10px;padding:1.3rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s}
+.ach-card:hover{border-color:#f59e0b}
+.ach-ico{width:38px;height:38px;border-radius:8px;background:#3f2f1f;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ach-card h4{font-size:0.88rem;font-weight:600;color:#e8e4df;margin-bottom:0.25rem}
+.ach-card p{font-size:0.77rem;color:#8b8278;line-height:1.5}
+.cert-row{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cert-item{background:#302b26;border:1px solid #4a4540;border-radius:8px;padding:0.6rem 1.1rem;font-size:0.82rem;color:#b8b0a8;display:flex;align-items:center;gap:0.6rem;transition:border-color 0.2s,color 0.2s}
+.cert-item:hover{border-color:#34d399;color:#6ee7b7}
+.cert-item::before{content:'✓';color:#34d399;font-weight:700;font-size:0.78rem}
+.cert-sec-title{font-size:0.8rem;font-weight:600;color:#8b8278;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-left p{font-size:0.95rem;color:#c4bbb2;line-height:1.8;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem}
+.clink{display:flex;align-items:center;gap:0.9rem;text-decoration:none;color:#b8b0a8;padding:0.8rem 1rem;border:1px solid #4a4540;border-radius:9px;font-size:0.86rem;transition:border-color 0.2s,color 0.2s,background 0.2s}
+.clink:hover{border-color:#f59e0b;color:#f59e0b;background:#3a3530}
+.clink-ico{width:32px;height:32px;border-radius:6px;background:#3a3530;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:0.9rem}
+.contact-form input,.contact-form textarea{border:1px solid #4a4540;background:#302b26;color:#e8e4df;padding:0.75rem 1rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;width:100%}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#f59e0b}
+.contact-form textarea{resize:vertical;min-height:110px}
+.contact-form button{background:#f59e0b;color:#1a1815;border:none;padding:0.85rem;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.2s,transform 0.15s}
+.contact-form button:hover{background:#d97706;transform:translateY(-2px)}
+#form-ok{display:none;font-size:0.82rem;color:#6ee7b7;text-align:center;padding:0.5rem;background:#1f3a2f;border-radius:6px}
+
+/* FOOTER */
+footer{background:#0d0b0a;color:#8b8278;text-align:center;padding:2.2rem 5%;font-size:0.8rem;line-height:1.8}
+footer span{color:#f59e0b}
+footer a{color:#8b8278;text-decoration:none;transition:color 0.15s}
+footer a:hover{color:#f59e0b}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 4%}
+  .nav-links{display:none}
+  .hero,.section{padding:5rem 4% 3rem}
+  .about-wrap,.contact-wrap{grid-template-columns:1fr;gap:2.5rem}
+  .hero-deco{display:none}
+  .stats-row{gap:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">&lt;srinivas.s /&gt;</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact" class="hire-btn">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="160" stroke="#f5f1ed" stroke-width="1"/>
+      <circle cx="200" cy="200" r="120" stroke="#f5f1ed" stroke-width="1"/>
+      <circle cx="200" cy="200" r="80" stroke="#f5f1ed" stroke-width="1"/>
+      <line x1="0" y1="200" x2="400" y2="200" stroke="#f5f1ed" stroke-width="0.5"/>
+      <line x1="200" y1="0" x2="200" y2="400" stroke="#f5f1ed" stroke-width="0.5"/>
+      <line x1="87" y1="87" x2="313" y2="313" stroke="#f5f1ed" stroke-width="0.5"/>
+      <line x1="313" y1="87" x2="87" y2="313" stroke="#f5f1ed" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <div class="greeting">Hello, world</div>
+    <h1>I'm <em>Srinivas S</em>,<br>Aspiring Software Engineer &amp; Java Developer</h1>
+    <p class="hero-sub">Final-year ECE student at R.M.D. Engineering College with hands-on software development experience through internships at <strong>Nurovec India</strong> and <strong>CVRDE (DRDO)</strong>. Specializing in <strong>Core Java, Spring Boot, and REST APIs</strong> to build scalable backend systems that solve real-world problems.</p>
+    <div class="cta-row">
+      <a href="Srinivas_S_Resume.pdf" download class="cta-primary">Download Resume ↓</a>
+      <a href="#projects" class="cta-ghost">View Projects →</a>
+      <a href="#contact" class="cta-ghost">Get in Touch</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-n">7<sup>+</sup></div>
+        <div class="stat-l">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">7.97<sup>/10</sup></div>
+        <div class="stat-l">Current CGPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">2</div>
+        <div class="stat-l">Internships Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-n">3</div>
+        <div class="stat-l">Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="sec-label">About Me</div>
+  <h2 class="sec-h">A bit about <span>who I am</span></h2>
+  <div class="about-wrap">
+    <div class="about-body">
+      <p>I'm Srinivas S, an <strong>Electronics and Communication Engineering</strong> final-year student at R.M.D. Engineering College, Chennai (Batch 2023–2027), holding a CGPA of <strong>7.97/10</strong>.</p>
+      <p>With a strong foundation in programming and practical software development experience acquired through internships and engineering projects, I have a deep passion for <strong>backend systems, data reconciliation engines, and API architectures</strong>. I focus on writing clean, efficient, and well-structured code in <strong>Core Java</strong> and <strong>Spring Boot</strong>.</p>
+      <p>My industry journey includes working as a <strong>Software Engineering Intern at Nurovec India</strong>, where I built automated OCR data extraction pipelines, WhatsApp CRM browser automation, and structured data validators, as well as an internship at <strong>CVRDE, DRDO (Ministry of Defence)</strong>, studying high-speed video transmission interfaces.</p>
+      <p>I also bridge the software-hardware divide through embedded systems prototypes, working with ESP32 microcontrollers, sensor interfacing, and automated safety interlocks.</p>
+      <p>I am a quick learner, adaptable to emerging technologies, and possess solid analytical problem-solving skills. Currently <strong>seeking an entry-level software engineering role</strong> where I can contribute meaningfully and grow within an engineering team.</p>
+    </div>
+    <div class="info-cards">
+      <div class="info-card">
+        <span class="ic-icon">🎓</span>
+        <div>
+          <div class="ic-title">R.M.D. Engineering College, Chennai</div>
+          <div class="ic-sub">B.E. ECE (Full-Time) · 2023–2027 · CGPA 7.97 / 10</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">💼</span>
+        <div>
+          <div class="ic-title">Nurovec India Private Limited</div>
+          <div class="ic-sub">Software Engineering Intern · Java OCR &amp; WhatsApp Mini CRM · June 2026 – August 2026</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">🏛️</span>
+        <div>
+          <div class="ic-title">CVRDE, DRDO, Ministry of Defence</div>
+          <div class="ic-sub">Research Intern · HD-SDI Video Transmission Systems · June 2025 – July 2025</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">💻</span>
+        <div>
+          <div class="ic-title">Technical Expertise</div>
+          <div class="ic-sub">Core Java · Spring Boot · REST APIs · MySQL · MongoDB · Postman · ESP32</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="ic-icon">📍</span>
+        <div>
+          <div class="ic-title">Chennai, Tamil Nadu, India</div>
+          <div class="ic-sub">Open to remote &amp; on-site software engineering roles across India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / INTERNSHIPS -->
+<section class="section" id="experience">
+  <div class="sec-label">Work Experience</div>
+  <h2 class="sec-h">Internships &amp; <span>Experience</span></h2>
+  <div class="exp-wrap">
+    <div class="tl">
+
+      <!-- Internship 1: Nurovec India -->
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">JUNE 2026 — AUGUST 2026</div>
+        <h3>Software Engineering Intern <span class="tl-badge">Internship</span></h3>
+        <div class="tl-org">Nurovec India Private Limited</div>
+        <ul>
+          <li>Developed an OCR receipt processor using <strong>Java</strong>, <strong>Tesseract OCR</strong>, and <strong>JSON</strong> for structured receipt data extraction.</li>
+          <li>Developed a WhatsApp Mini CRM Chrome extension for automated contact extraction using <strong>JavaScript</strong>.</li>
+          <li>Engineered structured JSON parsing and pipeline validation to automate workflow processes and improve data accuracy.</li>
+          <li>Gained hands-on exposure to browser automation workflows using <strong>Playwright</strong>, exploring Chromium-based browser interactions and headless automation architecture.</li>
+        </ul>
+      </div>
+
+      <!-- Internship 2: CVRDE DRDO -->
+      <div class="tl-item">
+        <div class="tl-dot v2"></div>
+        <div class="tl-date">JUNE 2025 — JULY 2025</div>
+        <h3>Research Intern <span class="tl-badge">Internship</span></h3>
+        <div class="tl-org v2">CVRDE, DRDO, Ministry of Defence</div>
+        <ul>
+          <li>Studied HD-SDI-based high-speed video transmission systems for mission-critical defence applications.</li>
+          <li>Gained in-depth exposure to industrial video standards, signal integrity, and embedded communication interfaces.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section section-alt" id="education">
+  <div class="sec-label">Academic Background</div>
+  <h2 class="sec-h">My <span>Education</span></h2>
+  <div class="edu-grid">
+
+    <!-- College Degree -->
+    <div class="edu-card">
+      <div class="edu-badge">2023 — 2027 (Final Year)</div>
+      <div class="edu-icon">🎓</div>
+      <h3>B.E. Electronics and Communication Engineering</h3>
+      <div class="edu-inst">R.M.D. Engineering College (Full-Time)</div>
+      <div class="edu-score">Current CGPA: <strong>7.97 / 10</strong></div>
+      <p class="edu-desc">Core coursework in Object-Oriented Programming, Data Structures &amp; Algorithms, Computer Networks, Microcontrollers, and Operating Systems. Actively designing backend services and embedded projects alongside academics.</p>
+    </div>
+
+    <!-- 12th Grade -->
+    <div class="edu-card">
+      <div class="edu-badge">2023</div>
+      <div class="edu-icon">🏫</div>
+      <h3>Higher Secondary Certificate (12th Grade)</h3>
+      <div class="edu-inst">Velammal Vidyalaya, Paruthipattu, Avadi (Full-Time)</div>
+      <div class="edu-score">Score: <strong>79.8%</strong></div>
+      <p class="edu-desc">Comprehensive foundation in Mathematics, Physics, Chemistry, and Computer Science with hands-on problem-solving orientation.</p>
+    </div>
+
+    <!-- 10th Grade -->
+    <div class="edu-card">
+      <div class="edu-badge">2021</div>
+      <div class="edu-icon">📚</div>
+      <h3>Secondary School Certificate (10th Grade)</h3>
+      <div class="edu-inst">Velammal Vidyalaya, Paruthipattu, Avadi (Full-Time)</div>
+      <div class="edu-score">Score: <strong>91.8%</strong></div>
+      <p class="edu-desc">Graduated with academic distinction, establishing strong fundamentals in Science and Mathematics.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="sec-label">Skills &amp; Capabilities</div>
+  <h2 class="sec-h">My <span>Tech Stack</span></h2>
+  <div class="skills-wrap">
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#f59e0b"></div>Programming Languages</div>
+      <div class="skill-chips">
+        <span class="chip">Java Programming</span><span class="chip">Core Java</span>
+        <span class="chip">OOP</span><span class="chip">Collections</span>
+        <span class="chip">C Programming</span><span class="chip">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#a78bfa"></div>Backend Development</div>
+      <div class="skill-chips">
+        <span class="chip">Spring Boot</span><span class="chip">REST APIs</span>
+        <span class="chip">CRUD Operations</span><span class="chip">Maven</span>
+        <span class="chip">Exception Handling</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#38bdf8"></div>Frontend Development</div>
+      <div class="skill-chips">
+        <span class="chip">HTML</span><span class="chip">CSS3</span>
+        <span class="chip">JavaScript</span><span class="chip">Leaflet.js</span>
+        <span class="chip">Responsive UI</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#34d399"></div>Databases</div>
+      <div class="skill-chips">
+        <span class="chip">MySQL</span><span class="chip">MongoDB</span>
+        <span class="chip">MongoDB Atlas</span><span class="chip">Schema Design</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#fbbf24"></div>Tools &amp; Platforms</div>
+      <div class="skill-chips">
+        <span class="chip">GitHub</span><span class="chip">Git</span>
+        <span class="chip">Postman</span><span class="chip">IntelliJ IDEA</span>
+        <span class="chip">VS Code</span><span class="chip">Arduino IDE</span>
+        <span class="chip">MATLAB</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title"><div class="sb-dot" style="background:#fb923c"></div>Embedded &amp; IoT</div>
+      <div class="skill-chips">
+        <span class="chip">ESP32</span><span class="chip">Sensor Interfacing</span>
+        <span class="chip">Relay Control</span><span class="chip">Embedded C</span>
+        <span class="chip">Arduino</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section section-alt" id="projects">
+  <div class="sec-label">Featured Projects</div>
+  <h2 class="sec-h">Things I've <span>Built</span></h2>
+
+  <div class="proj-filter">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All (7)</button>
+    <button class="filter-btn" onclick="filterProjects('software',this)">Software (5)</button>
+    <button class="filter-btn" onclick="filterProjects('hardware',this)">Hardware / Embedded (2)</button>
+  </div>
+
+  <div class="proj-grid" id="proj-grid">
+
+    <!-- 1. UPI Settle (Featured Backend Project) -->
+    <div class="proj-card c1" data-cat="software">
+      <div class="proj-top">
+        <span class="proj-type">Core Java · Financial Engine · Featured</span>
+        <span class="live-tag tag-engine">⚡ Active Development</span>
+      </div>
+      <h3>UPI Settle — Merchant Payment Reconciliation Engine</h3>
+      <p class="proj-lead">A high-throughput Core Java reconciliation engine built to simulate payment transactions and settlement records, applying strict financial business rules to ensure balance integrity.</p>
+      <ul class="proj-bullets">
+        <li>Developed a Core Java-based merchant payment reconciliation engine to simulate payment transactions and settlement records, applying business rules to identify matched, missing, duplicate, and amount-mismatched settlements.</li>
+        <li>Implemented reconciliation summary analysis to track transaction statuses, reconciliation outcomes, exception counts, total matched amount, and match rate.</li>
+        <li>Built an advanced exception reporting module to identify settlement discrepancies, calculate amount differences, track duplicate records, and provide descriptive reasons for reconciliation failures.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">Core Java</span><span class="pchip">OOP &amp; Collections</span>
+        <span class="pchip">Rule Engine</span><span class="pchip">Payment Simulation</span>
+        <span class="pchip">Exception Reporting</span><span class="pchip">Summary Analytics</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink">Source Code →</a>
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink gh">GitHub Repository ↗</a>
+      </div>
+    </div>
+
+    <!-- 2. CNG Connect -->
+    <div class="proj-card c2" data-cat="software">
+      <div class="proj-top">
+        <span class="proj-type">Full-Stack · Live Deployment · Featured</span>
+        <span class="live-tag">Live on Render</span>
+      </div>
+      <h3>CNG CONNECT — Location &amp; Navigation Platform</h3>
+      <p class="proj-lead">A full-stack, location-based web application helping drivers find nearby CNG stations across India with intelligent routing, crowd analytics, and accessibility options.</p>
+      <ul class="proj-bullets">
+        <li>Developed a location-based web application using HTML, CSS, JavaScript, Leaflet.js, and Spring Boot.</li>
+        <li>Implemented REST APIs using Spring Boot and integrated MongoDB for managing users, stations, and application data.</li>
+        <li>Integrated geolocation, map-based routing, crowd-status updates, and multilingual and voice-assisted features to improve station discovery and navigation.</li>
+        <li>Configured <strong>GitHub Actions</strong> CI/CD automated workflow pipelines for build validation and continuous deployment to Render.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">Java</span><span class="pchip">Spring Boot</span>
+        <span class="pchip">REST APIs</span><span class="pchip">MongoDB</span>
+        <span class="pchip">Leaflet.js</span><span class="pchip">GitHub Actions</span><span class="pchip">Render</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://cng-connect-vi3n.onrender.com" target="_blank" class="plink">↗ Live Demo</a>
+        <a href="https://github.com/srinivas-cod/CNG_Connect_stable" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 3. Smart Battery Management System (Hardware / Embedded) -->
+    <div class="proj-card c3" data-cat="hardware">
+      <div class="proj-top">
+        <span class="proj-type">Embedded Systems · IoT · Safety Prototype</span>
+        <span class="live-tag" style="background:#1f333a;border-color:#38bdf8;color:#7dd3fc">Hardware Prototype</span>
+      </div>
+      <h3>Smart Battery Management System with Early Safety Interlocks</h3>
+      <p class="proj-lead">An ESP32-based battery monitoring prototype designed to monitor operating parameters in real time and trigger early safety interlocks to prevent battery failure.</p>
+      <ul class="proj-bullets">
+        <li>Developed an ESP32-based battery monitoring prototype to measure and monitor battery operating parameters in real time.</li>
+        <li>Integrated voltage, current, and temperature sensors to monitor battery operating conditions.</li>
+        <li>Implemented threshold-based safety logic to control a relay under configured battery operating conditions.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">ESP32</span><span class="pchip">Sensor Interfacing</span>
+        <span class="pchip">Relay Control</span><span class="pchip">Voltage &amp; Current</span>
+        <span class="pchip">Temperature Monitoring</span><span class="pchip">Embedded C</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 4. OCR Receipt Processor & Check Receipts -->
+    <div class="proj-card c4" data-cat="software">
+      <div class="proj-top">
+        <span class="proj-type">Java OCR · Automation · Extension</span>
+      </div>
+      <h3>OCR Receipt Processor &amp; Receipt Validation Engine</h3>
+      <p class="proj-lead">An automated receipt parsing and verification pipeline combining optical character recognition with client-side fraud prevention tools.</p>
+      <ul class="proj-bullets">
+        <li>Developed an OCR receipt processor using Java, Tesseract OCR, and JSON for structured receipt data extraction.</li>
+        <li>Created a companion Chrome browser extension to verify receipt IDs, flag counterfeit entries, simulate QR code scanning, and provide instant validation alerts.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">Java</span><span class="pchip">Tesseract OCR</span>
+        <span class="pchip">JSON</span><span class="pchip">JavaScript</span>
+        <span class="pchip">Chrome APIs</span><span class="pchip">Manifest V3</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod/Check--Receipts-" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 5. Library Management System -->
+    <div class="proj-card c5" data-cat="software">
+      <div class="proj-top">
+        <span class="proj-type">Backend · Spring Boot REST API</span>
+      </div>
+      <h3>Library Management System</h3>
+      <p class="proj-lead">A complete CRUD-based backend microservice designed for library book records, catalog indexing, and inventory tracking.</p>
+      <ul class="proj-bullets">
+        <li>Built with Spring Boot and MySQL, exposing clean REST API endpoints for adding, updating, searching, and deleting book items.</li>
+        <li>Structured layered architecture (Controller, Service, Repository) and validated all request-response cycles with Postman.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">Java</span><span class="pchip">Spring Boot</span>
+        <span class="pchip">MySQL</span><span class="pchip">REST APIs</span><span class="pchip">Postman</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 6. Agri Connect -->
+    <div class="proj-card c1" data-cat="software">
+      <div class="proj-top">
+        <span class="proj-type">Full-Stack · Social Impact</span>
+      </div>
+      <h3>Agri Connect — Direct Farmer Marketplace</h3>
+      <p class="proj-lead">An online agricultural marketplace connecting regional farmers directly to consumers, cutting out middlemen to improve farmer income and reduce consumer price markups.</p>
+      <ul class="proj-bullets">
+        <li>Designed a responsive marketplace allowing farmers to list produce directly with transparent pricing.</li>
+        <li>Built with localized multilingual support across Tamil, Kannada, Telugu, and English to serve rural agricultural communities across South India.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">HTML</span><span class="pchip">CSS</span><span class="pchip">JavaScript</span>
+        <span class="pchip">Multilingual UI</span><span class="pchip">Tamil / Telugu / Kannada</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- 7. Gesture-Based Navigation -->
+    <div class="proj-card c2" data-cat="hardware">
+      <div class="proj-top">
+        <span class="proj-type">Embedded · Assistive Tech</span>
+      </div>
+      <h3>Gesture-Based Audio-Vision Navigation System</h3>
+      <p class="proj-lead">An assistive navigation prototype designed for accessibility, featuring ultrasonic sensor ranging and synchronized sensory feedback.</p>
+      <ul class="proj-bullets">
+        <li>Continuously scans proximity using ultrasonic sensors to detect surrounding obstacles in real-time.</li>
+        <li>Provides dual-feedback alerts through speaker audio announcements and an LED visual display to guide safe movement.</li>
+      </ul>
+      <div class="proj-chips">
+        <span class="pchip">Ultrasonic Sensor</span><span class="pchip">Speaker Output</span>
+        <span class="pchip">LED Display</span><span class="pchip">Embedded C</span><span class="pchip">Accessibility</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/srinivas-cod" target="_blank" class="plink gh">GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS & CERTIFICATIONS -->
+<section class="section" id="achievements">
+  <div class="sec-label">Wins &amp; Credentials</div>
+  <h2 class="sec-h">Achievements &amp; <span>Certifications</span></h2>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <div class="ach-ico">🏆</div>
+      <div>
+        <h4>First Prize — Ideation Contest</h4>
+        <p>Meenakshi Sundararajan Engineering College</p>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-ico">💡</div>
+      <div>
+        <h4>Smart India Hackathon (SIH) 2025</h4>
+        <p>Participated in idea screening and submitted proposed technical solution with PPT</p>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-ico">⚡</div>
+      <div>
+        <h4>Advanced Cluster Level</h4>
+        <p>QNX Hackathon · Real-time embedded systems &amp; automotive platform development</p>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-ico">🛒</div>
+      <div>
+        <h4>Certificate of Achievement</h4>
+        <p>Walmart Sparkathon (2025)</p>
+      </div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-ico">🏛️</div>
+      <div>
+        <h4>Defence Internship Certificate</h4>
+        <p>CVRDE, DRDO, Ministry of Defence · High-Speed Video Transmission (2025)</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="cert-sec-title">Professional Certifications</div>
+    <div class="cert-row">
+      <div class="cert-item">Certified in "Introduction to Internet of Things (IoT)" — IIT Kharagpur via NPTEL</div>
+      <div class="cert-item">Certified in Java Programming — CASS Academy Computer Education</div>
+      <div class="cert-item">AI and Career Empowerment — University of Maryland</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="sec-label">Contact</div>
+  <h2 class="sec-h">Let's <span>Connect</span></h2>
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <p>I'm actively seeking entry-level software engineering opportunities in Java backend and full-stack development. Whether you have an open position, an engineering challenge, or want to discuss a project, my inbox is always open.</p>
+      <div class="contact-links">
+        <a href="mailto:srinivassriraman0923@gmail.com" class="clink">
+          <div class="clink-ico">📧</div>srinivassriraman0923@gmail.com
+        </a>
+        <a href="tel:+918793380981" class="clink">
+          <div class="clink-ico">📞</div>+91 87933 80981
+        </a>
+        <a href="https://www.linkedin.com/in/srinivas-s-759879202/" target="_blank" class="clink">
+          <div class="clink-ico">💼</div>LinkedIn — srinivas-s-759879202
+        </a>
+        <a href="https://github.com/srinivas-cod" target="_blank" class="clink">
+          <div class="clink-ico">🐙</div>GitHub — srinivas-cod
+        </a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+      <div id="form-ok">Thanks for reaching out! I'll get back to you soon.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; developed by <span>Srinivas S</span> · Chennai, India 🇮🇳</p>
+  <p style="margin-top:0.4rem">
+    <a href="https://github.com/srinivas-cod" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/srinivas-s-759879202/" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="mailto:srinivassriraman0923@gmail.com">Email</a>
+  </p>
+  <p style="margin-top:0.4rem;font-size:0.72rem">Open to Software Engineering · Java · Spring Boot · Backend · Full-Stack Roles</p>
+</footer>
+
+<script>
+function handleForm(e){
+  e.preventDefault();
+  document.getElementById('form-ok').style.display='block';
+  e.target.reset();
+}
+
+function filterProjects(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.style.display='flex';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.style.opacity='1';
+      en.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.08});
+
+document.querySelectorAll('.proj-card,.skill-block,.info-card,.ach-card,.tl-item,.edu-card').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(18px)';
+  el.style.transition='opacity 0.45s ease, transform 0.45s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
